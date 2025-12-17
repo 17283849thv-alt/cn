@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <h1>Holaa</h1>
+      <p>Te queria decir que te quiero muchoteee, muak</p>
+      <a href="#" class="boton-redireccion">¡Precioname!</a>
+    </div>
+    <script>
+      const boton = document.querySelector(".boton-redireccion");
+
+      boton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        for (let i = 0; i < 15; i++) {
+          crearCorazon(e.pageX, e.pageY);
+        }
+      });
+
+      function crearCorazon(x, y) {
+        const corazon = document.createElement("div");
+        corazon.classList.add("corazon");
+        corazon.innerHTML = "❤";
+
+        // Paleta pastel acorde al fondo
+        const colores = [
+          "#f4a6b8", // rosa suave
+          "#f7c1cc", // rosa claro
+          "#f9d5e5", // rosa pastel
+          "#ffd6a5", // durazno
+          "#fde2e4", // rosado crema
+          "#e8dff5", // lila pastel
+        ];
+
+        // Tamaño y movimiento aleatorios
+        const size = Math.random() * 1.5 + 1.2; // 0.6x a 1.5x
+        const randomX = (Math.random() - 0.5) * 220;
+
+        corazon.style.left = x + "px";
+        corazon.style.top = y + "px";
+        corazon.style.color =
+          colores[Math.floor(Math.random() * colores.length)];
+        corazon.style.setProperty("--s", size);
+        corazon.style.setProperty("--x", randomX + "px");
+
+        document.body.appendChild(corazon);
+
+        setTimeout(() => {
+          corazon.remove();
+        }, 2200);
+      }
+    </script>
+  </body>
+</html>
